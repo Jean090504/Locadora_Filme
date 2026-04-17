@@ -28,7 +28,7 @@ app.use(helmet())
 
 // --- IMPORTAÇÃO DAS ROTAS ---
 
-const filmeRotas = require('./src/routes/filme/routes_filme.js') 
+const filmeRotas = require('./src/routes/filme/routes_filme.js')
 
 app.use('/v1/senai/locadora', filmeRotas)
 

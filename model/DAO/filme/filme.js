@@ -6,7 +6,7 @@
  ********************************************************************************************************************************************/
 
 // Importa a biblioteca do Knex para realizar as operações no banco de dados
-const knex = require('knex.js')
+const knex = require('knex')
 
 // Importa as configurações do Knex para conectar ao banco de dados
 const knexConfig = require('../../database_config_knex/knexFile.js')

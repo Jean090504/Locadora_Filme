@@ -22,3 +22,5 @@ rota.post('/filme', bodyParserJSON, async (request, response) => {
     response.status(result.status_code)
     response.json(result)
 })
+
+module.exports = rota
