@@ -15,10 +15,14 @@ const bodyParserJSON = bodyParser.json()
 
 // Rota para inserir um novo filme
 rota.post('/filme', bodyParserJSON, async (request, response) => {
+    // recebe o conteudo dentro do body da requisição
     let dados = request.body
+    let conteType = request.headers['content-type']// linha adicionada
 
-    let result = await controllerFilme.inserirNovoFilme(dados)
+    //console.log(request.headers)
 
+    let result = await controllerFilme.inserirNovoFilme(dados,conteType)
+    
     response.status(result.status_code)
     response.json(result)
 })

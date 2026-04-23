@@ -29,6 +29,28 @@ const SUCCESS_CREATED_ITEM = {
     message: 'Registro inserido com sucesso.'
 }
 
+//Mensagem de erro para falha na modelagem de dados, para manter o código mais organizado e facilitar a manutenção
+const ERROR_INTERNAL_SERVER_MODEL ={
+    status:             false,
+    status_code:        500,
+    message:            "nao foi possivel processar a requisicao por conta de erro na api[erro na modelagem de dados ] "
+}
+
+//Mensagem de erro para falha na controller, para manter o código mais organizado e facilitar a manutenção
+const ERROR_INTERNAL_SERVER_CONTROLLER ={
+    status:             false,
+    status_code:        500,
+    message:            "nao foi possivel processar a requisicao por conta de erro na api[ERRO NA CONTROLLER ] "
+}
+
+//Mensagem de erro para tipo de conteúdo não aceito, para manter o código mais organizado e facilitar a manutenção
+const ERROR_CONTENT_TYPE ={
+    status:             false,
+    status_code:        415,
+    message:            "nao foi possivel processar a requisicao pois o tipo de dado aceito pela api é so json"
+}
+
+
 
 module.exports = {
     DEFAULT_MESSAGE,
