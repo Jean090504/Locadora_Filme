@@ -170,7 +170,33 @@ const buscarFilme = async (id) => {
 
 //Função para excluir um filme pelo ID
 const excluirFilme = async (id) => {
+    //criando clone do objeto json para manipular a estrutura local sem modificar o original
+    let message = JSON.parse(JSON.stringify(config_messages))    
 
+    try {
+        if(id == '' || id == null || id == undefined || isNaN(id)){
+            message.ERROR_BAD_REQUEST.field = `[ID] invalido`
+            return message.ERROR_BAD_REQUEST //400
+        }  else {
+            //Chama a função do DAO para retornar o filme do banco de dados
+            let result = await filmeDAO.deleteFilme(id)
+
+            //Validação para verificar se o DAO conseguiu processar os dados
+            if(result){
+                //Validação para verificar se existe conteúdo no array
+                if(result){ 
+                    return message.SUCCESS_DELETED_ITEM //200 (Filme excluido com sucesso)
+                }else{
+                    return message.ERROR_NOT_FOUND //404
+                }
+            } else{
+                return message.ERROR_INTERNAL_SERVER_MODEL //500
+            }
+        }  
+
+    } catch (error) {
+        return message.ERROR_INTERNAL_SERVER_CONTROLLER //500 
+    }
 }
 
 module.exports = {

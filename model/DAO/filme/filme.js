@@ -102,7 +102,23 @@ const selectByIdFilme = async (id) => {
         
 // Função para deletar dados na tabela Filme pelo ID
 const deleteFilme = async (id) => {
+    try {
+        //Script SQL para deletar um dado da tabela Filme pelo ID
+        let sql = `delete from tbl_filme where id=${id}`
 
+        // Executa o comando SQL no banco de dados e retorna o resultado da consulta
+        let result = await knexConex.raw(sql)
+
+        //Validação para verificar se o Banco de Dados é um array
+        //Se o script der errado ou não houver registros, o resultado não será um array, e a função retornará false
+        if(Array.isArray(result)){
+            return result[0] // Retorna apenas o array de dados
+        } else {
+            return false
+        }
+    } catch (error) {
+        return false
+    }
 }
 
 module.exports = {

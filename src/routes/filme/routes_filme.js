@@ -45,4 +45,14 @@ rota.get('/filme/:id', async (request, response) => {
     response.json(result)
 })
 
+//Rota para deletar um filme específico, utilizando o ID do filme como parâmetro
+rota.delete('/filme/:id', async (request, response) => {
+    let id = request.params.id
+
+    let result = await controllerFilme.excluirFilme(id)
+
+    response.status(result.status_code)
+    response.json(result)
+})
+
 module.exports = rota
