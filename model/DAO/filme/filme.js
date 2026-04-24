@@ -58,14 +58,48 @@ const updateFilme = async (filme) => {
 
 // Função para selecionar todos os dados na tabela Filme
 const selectAllFilme = async () => {
+    try {
+        //Script SQL para selecionar todos os dados da tabela Filme ordenados pelo ID de forma decrescente
+        let sql = 'select * from tbl_filme order by id desc'
 
+        // Executa o comando SQL no banco de dados e retorna o resultado da consulta
+        let result = await knexConex.raw(sql)
+
+        //Validação para verificar se o Banco de Dados é um array
+        //Se o script der errado ou não houver registros, o resultado não será um array, e a função retornará false
+        if(Array.isArray(result)){
+            return result[0] // Retorna apenas o array de dados, ignorando os metadados
+        } else {
+            return false
+        }
+    } catch (error) {
+        return false
+    }
 }
+
 
 // Função para selecionar um dado na tabela Filme pelo ID
 const selectByIdFilme = async (id) => {
+    try {
+        //Script SQL para selecionar um dado da tabela Filme pelo ID
+        let sql = `select * from tbl_filme where id=${id}`
 
+        // Executa o comando SQL no banco de dados e retorna o resultado da consulta
+        let result = await knexConex.raw(sql)
+
+        //Validação para verificar se o Banco de Dados é um array
+        //Se o script der errado ou não houver registros, o resultado não será um array, e a função retornará false
+        if(Array.isArray(result)){
+            return result[0] // Retorna apenas o array de dados
+        } else {
+            return false
+        }
+    } catch (error) {
+        return false
+    }
 }
 
+        
 // Função para deletar dados na tabela Filme pelo ID
 const deleteFilme = async (id) => {
 

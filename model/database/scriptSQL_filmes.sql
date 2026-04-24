@@ -39,3 +39,5 @@ insert into tbl_filme (
 desc tbl_filme;
 
 select * from tbl_filme;
+
+
