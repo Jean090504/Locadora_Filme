@@ -14,7 +14,6 @@ const knexConfig = require('../../database_config_knex/knexFile.js')
 // Cria uma instância do Knex usando as configurações de desenvolvimento
 const knexConex = knex(knexConfig.development)
 
-
 // Função para inserir dados na tabela Filme
 async function insertFilme(filme){
 
@@ -39,20 +38,44 @@ async function insertFilme(filme){
                 // Executa o comando SQL no banco de dados
                 let result = await knexConex.raw(sql)
 
-            if(result){
+            if(result)
                 return true 
-            }else{
+            else
                 return false
-            }
+            
 
         } catch (error) {
             return false
     }
 }
-        
 
 // Função para atualizar dados na tabela Filme
 const updateFilme = async (filme) => {
+
+    try{
+        let sql = `update tbl_filme 
+                set nome = '${filme.nome}',
+                    data_lancamento = '${filme.data_lancamento}',
+                    duracao = '${filme.duracao}',
+                    sinopse = '${filme.sinopse}',
+                    avaliacao = if('${filme.avaliacao}' = "", null,'${filme.avaliacao}'),
+                    valor = '${filme.valor}',
+                    capa = '${filme.capa}'
+                where id = ${filme.id};`
+
+        // Executa o comando SQL no banco de dados
+        let result = await knexConex.raw(sql)
+
+        if(result)
+            return true 
+        else
+            return false
+        
+
+    }catch(error){
+        return false 
+    }
+
 
 }
 
@@ -89,11 +112,11 @@ const selectByIdFilme = async (id) => {
 
         //Validação para verificar se o Banco de Dados é um array
         //Se o script der errado ou não houver registros, o resultado não será um array, e a função retornará false
-        if(Array.isArray(result)){
+        if(Array.isArray(result))
             return result[0] // Retorna apenas o array de dados
-        } else {
+         else 
             return false
-        }
+        
     } catch (error) {
         return false
     }
@@ -111,11 +134,11 @@ const deleteFilme = async (id) => {
 
         //Validação para verificar se o Banco de Dados é um array
         //Se o script der errado ou não houver registros, o resultado não será um array, e a função retornará false
-        if(Array.isArray(result)){
+        if(Array.isArray(result))
             return result[0] // Retorna apenas o array de dados
-        } else {
+         else 
             return false
-        }
+        
     } catch (error) {
         return false
     }

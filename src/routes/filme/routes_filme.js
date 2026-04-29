@@ -45,6 +45,24 @@ rota.get('/filme/:id', async (request, response) => {
     response.json(result)
 })
 
+//Rota para atualizar um filme específico, utilizando ID como parâmetro
+rota.put('/filme/:id',bodyParserJSON, async (request, response) =>{
+    //Recebe o contentType
+    let contentType = request.headers['content-type']
+
+    //Recebe o ID
+    let id = request.params.id
+
+    //Recebe os dados enviados no corpo
+    let dados = request.body
+
+    //Chama a função de atualização porém tem que encaminhar a ordem na criação na função da controller
+    let result = await controllerFilme.atualizarFilme(dados, id, contentType)
+
+    response.status(result.status_code)
+    response.json(result)
+})
+
 //Rota para deletar um filme específico, utilizando o ID do filme como parâmetro
 rota.delete('/filme/:id', async (request, response) => {
     let id = request.params.id

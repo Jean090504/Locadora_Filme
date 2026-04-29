@@ -1,10 +1,10 @@
-#Cria database do projeto de filmes
+# Cria database do projeto de filmes
 create database db_filmes_2026_a;
 
-#Ativa o uso do database de filmes
+# Ativa o uso do database de filmes
 use db_filmes_2026_a;
 
-#Cria a tabela de filme
+# Cria a tabela de filme
 create table tbl_filme(
 	id int not null primary key auto_increment,
     nome varchar(80) not null,
@@ -16,7 +16,7 @@ create table tbl_filme(
     capa varchar(255)	
 );
 
-#Inserir dados 
+# Inserir dados 
 insert into tbl_filme (
 						nome, 
 						data_lancamento,
@@ -35,10 +35,22 @@ insert into tbl_filme (
                                 'https://br.web.img2.acsta.net/c_150_200/img/5b/ea/5bea1aeac3323aeaaf82449a34fafbbf.jpg'
                                 );
 
-#Mostra os atributos da tabela
+# Mostra os atributos da tabela
 desc tbl_filme;
 
 select * from tbl_filme;
 
+# Update no filme selecionado 
+update tbl_filme 
+set nome = 'Vingadores: Guerra Infinita',
+    data_lancamento = '2018-04-26',
+    duracao = '02:29:00',
+    sinopse = 'Os Vingadores se unem para combater Thanos, que planeja destruir metade da vida no universo.',
+    avaliacao = '8.4',
+    valor = '35.00',
+    capa = 'https://upload.wikimedia.org/wikipedia/pt/9/9b/Avengers_Infinity_War.jpg'
+where id = 2;
 
+# Deletar filme selecionado
+delete from tbl_filme where id = 2;
 

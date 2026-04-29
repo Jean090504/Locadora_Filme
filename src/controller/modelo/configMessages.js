@@ -34,6 +34,12 @@ const SUCCESS_RESPONSE = {
     status_code: 200
 }
 
+const SUCCESS_UPDATE_ITEM = {
+    status: true,
+    status_code: 200,
+    message: 'Registros atualizados com sucesso!'
+}
+
 const SUCCESS_DELETED_ITEM = {
     status: true,
     status_code: 200,
@@ -79,5 +85,6 @@ module.exports = {
     ERROR_CONTENT_TYPE,
     ERROR_NOT_FOUND,
     SUCCESS_RESPONSE,
+    SUCCESS_UPDATE_ITEM,
     SUCCESS_DELETED_ITEM
 }

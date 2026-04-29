@@ -58,14 +58,14 @@ async function validarDados(filme) {
 }
 
 //Função para inserir um novo filme
-async function inserirNovoFilme(filme,conteType) {
+async function inserirNovoFilme(filme,contentType) {
 
     //criando clone do objeto json para manipular a estrutura local sem modificar o original
     let message = JSON.parse(JSON.stringify(config_messages))    
 
     try {
 
-        if (String(conteType).toLocaleLowerCase()== 'application/json') {
+        if (String(contentType).toLocaleLowerCase()== 'application/json') {
             
         
             let validar = await validarDados(filme)
@@ -97,8 +97,57 @@ async function inserirNovoFilme(filme,conteType) {
 }
 
 //Função para atualizar um filme existente
-const atualizarFilme = async (filme) => {
+const atualizarFilme = async (filme, id, contentType) => {
+    //criando clone do objeto json para manipular a estrutura local sem modificar o original
+    let message = JSON.parse(JSON.stringify(config_messages))  
 
+    try {
+
+        //Validação do contentType
+        if(String(contentType).toLocaleLowerCase() == 'application/json') {
+
+            //Validação com ID incorreto
+            let resultBuscarID = await buscarFilme(id)
+
+            //Se a função do buscar encontrar o filme retorna verdadeiro, significa que existe no banco de dados, porém se retornar falso, podera retornar 400, 404 ou o 500 
+            if(resultBuscarID.status){
+                let validar = await validarDados(filme)
+
+                //Validação de campos obrigatórios para atualização
+                if(!validar){
+
+                    //Adiciono o atributo ID do filme no JSON para ser enviado ao DAO
+                    filme.id = id
+                    
+                    //Chama a função do DAO para atualizar as informações do filme
+                    let result = await filmeDAO.updateFilme(filme)
+
+                    if(result){
+                        message.DEFAULT_MESSAGE.status = message.SUCCESS_UPDATE_ITEM.status
+                        message.DEFAULT_MESSAGE.status_code = message.SUCCESS_UPDATE_ITEM.status_code
+                        message.DEFAULT_MESSAGE.message = message.SUCCESS_UPDATE_ITEM.message
+
+                        return message.DEFAULT_MESSAGE //200
+                    }else{
+                        return message.ERROR_INTERNAL_SERVER_MODEL //500
+                    }
+
+
+                }else{
+                    return validar //400
+                }
+
+            }else{
+                return resultBuscarID //400 ou //404 ou //500
+            }
+
+        }else{
+            return message.ERROR_CONTENT_TYPE //415
+        }
+
+    } catch (error) {
+        return message.ERROR_INTERNAL_SERVER_CONTROLLER //500
+    }
 }
 
 //Função para selecionar todos os filmes
