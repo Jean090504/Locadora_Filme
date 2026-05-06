@@ -37,9 +37,10 @@ async function insertFilme(filme){
 
                 // Executa o comando SQL no banco de dados
                 let result = await knexConex.raw(sql)
+                
 
             if(result)
-                return true 
+                return result[0].insertId // Retorna o ID do registro inserido
             else
                 return false
             
