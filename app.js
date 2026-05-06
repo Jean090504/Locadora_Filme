@@ -29,8 +29,10 @@ app.use(helmet())
 // --- IMPORTAÇÃO DAS ROTAS ---
 
 const filmeRotas = require('./src/routes/filme/routes_filme.js')
+const classificacaoRotas = require('./src/routes/classificacao/routes_classificacao.js')
 
 app.use('/v1/senai/locadora', filmeRotas)
+app.use('/v1/senai/locadora', classificacaoRotas)
 
 const PORT = process.env.PORT || 3000
 

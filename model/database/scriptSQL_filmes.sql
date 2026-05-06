@@ -16,6 +16,14 @@ create table tbl_filme(
     capa varchar(255)	
 );
 
+# Cria a tabela classificacao
+create table tbl_classificacao(
+	id int not null primary key auto_increment,
+    nome varchar(15) not null,
+    sigla varchar(5) not null,
+    descricao varchar(255) not null
+);
+
 # Inserir dados 
 insert into tbl_filme (
 						nome, 
@@ -36,7 +44,7 @@ insert into tbl_filme (
                                 );
 
 # Mostra os atributos da tabela
-desc tbl_filme;
+desc tbl_classificacao;
 
 select * from tbl_filme;
 

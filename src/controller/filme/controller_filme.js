@@ -70,7 +70,7 @@ async function inserirNovoFilme(filme,contentType) {
         
             let validar = await validarDados(filme)
 
-            //se validar retornanr algo significa que é json de ero e ja sera retornado 
+            //se validar retornar algo significa que é json e ja sera retornado 
             if(validar){
                 return validar
             }else{
@@ -84,7 +84,7 @@ async function inserirNovoFilme(filme,contentType) {
                     message.DEFAULT_MESSAGE.response = filme
 
                 }else{
-                    return message.ERROR_INTERNAL_SERVER_MODEL//erro 500
+                    return message.ERROR_INTERNAL_SERVER_MODEL// 500
                     
                 }
                 return message.DEFAULT_MESSAGE

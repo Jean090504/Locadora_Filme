@@ -15,12 +15,6 @@ const DEFAULT_MESSAGE = {
     response: {}
 }
 
-//Mensagem de erro para requisição com dados incorretos ou incompletos, para manter o código mais organizado e facilitar a manutenção
-const ERROR_BAD_REQUEST = {
-    status: false,
-    status_code: 400,
-    message: 'Os dados enviados na requisição estão incorretos ou incompletos. Verifique os dados e tente novamente.'
-}
 
 //Mensagem de sucesso para insert, para manter o código mais organizado e facilitar a manutenção
 const SUCCESS_CREATED_ITEM = {
@@ -46,6 +40,12 @@ const SUCCESS_DELETED_ITEM = {
     message: 'Registro deletado com sucesso.'
 }
 
+//Mensagem de erro para requisição com dados incorretos ou incompletos, para manter o código mais organizado e facilitar a manutenção
+const ERROR_BAD_REQUEST = {
+    status: false,
+    status_code: 400,
+    message: 'Os dados enviados na requisição estão incorretos ou incompletos. Verifique os dados e tente novamente.'
+}
 
 //Mensagem de erro para falha na modelagem de dados, para manter o código mais organizado e facilitar a manutenção
 const ERROR_INTERNAL_SERVER_MODEL ={
