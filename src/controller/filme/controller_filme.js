@@ -134,8 +134,6 @@ const atualizarFilme = async (filme, id, contentType) => {
                     }else{
                         return message.ERROR_INTERNAL_SERVER_MODEL //500
                     }
-
-
                 }else{
                     return validar //400
                 }

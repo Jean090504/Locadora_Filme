@@ -46,7 +46,7 @@ insert into tbl_filme (
 # Mostra os atributos da tabela
 desc tbl_classificacao;
 
-select * from tbl_filme;
+select * from tbl_classificacao;
 
 # Update no filme selecionado 
 update tbl_filme 
