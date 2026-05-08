@@ -71,7 +71,7 @@ const listarClassificacao = async () => {
     let message = JSON.parse(JSON.stringify(config_messages))
 
     try {
-        let result = await classificacaoDAO.selectAllFilme()
+        let result = await classificacaoDAO.selectAllClassificacao()
 
         if(result){
             if(result.length > 0){
@@ -80,10 +80,10 @@ const listarClassificacao = async () => {
                 message.DEFAULT_MESSAGE.response.count = result.length
                 message.DEFAULT_MESSAGE.response.classificacao = result
 
-                //200 (Dados do filme)
+                //200 
                 return message.DEFAULT_MESSAGE 
             }else{
-                //404 (Nenhum filme encontrado)
+                //404 (Nenhuma classificacao encontrado)
                 return message.ERROR_NOT_FOUND
             }
         }else{
@@ -107,7 +107,7 @@ const listarClassificacaoPorID = async (id) => {
             message.ERROR_BAD_REQUEST.field = `[ID] invalido`
             return message.ERROR_BAD_REQUEST //400
         }else{
-            let result = await classificacaoDAO.selectByIdFilme(id)
+            let result = await classificacaoDAO.selectByIdClassificacao(id)
 
             if(result){
                 if(result.length > 0){
@@ -142,7 +142,7 @@ const deletarClassificacaoPorID = async (id) => {
 
         //Validação para verificar se o ID é válido (não vazio, não nulo, não indefinido e é um número)
         if(resultBuscarID.status){
-            let result = await classificacaoDAO.deleteByIdFilme(id)
+            let result = await classificacaoDAO.deleteByIdClassificacao(id)
 
             if(result){
                 return message.SUCCESS_DELETED_ITEM //200

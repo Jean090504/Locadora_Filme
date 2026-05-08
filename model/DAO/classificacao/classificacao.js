@@ -43,9 +43,9 @@ insertClassificacao = async (classificacao) => {
 }
 
 // Função para selecionar todas as classificações do banco de dados
-selectAllFilme = async () => {
+selectAllClassificacao = async () => {
     try {
-        let sql = `select * from tbl_classificacao`
+        let sql = `select * from tbl_classificacao order by id desc`
         let result = await knexConex.raw(sql)
 
         if(result[0].length > 0)
@@ -59,7 +59,7 @@ selectAllFilme = async () => {
 }
 
 // Função para selecionar uma classificação específica do banco de dados, utilizando o ID como parâmetro
-selectByIdFilme = async (id) => {
+selectByIdClassificacao = async (id) => {
     try {
         let sql = `select * from tbl_classificacao where id=${id}`
 
@@ -77,7 +77,7 @@ selectByIdFilme = async (id) => {
 }
 
 // Função para deletar uma classificação específica do banco de dados, utilizando o ID como parâmetro
-deleteByIdFilme = async (id) => {
+deleteByIdClassificacao = async (id) => {
     try {
         let sql = `delete from tbl_classificacao where id=${id}`
 
@@ -119,8 +119,8 @@ updateClassificacao = async (classificacao, id) => {
 
 module.exports = {
     insertClassificacao,
-    selectAllFilme,
-    selectByIdFilme,
-    deleteByIdFilme,
+    selectAllClassificacao,
+    selectByIdClassificacao,
+    deleteByIdClassificacao,
     updateClassificacao
 }

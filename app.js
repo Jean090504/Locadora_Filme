@@ -30,9 +30,11 @@ app.use(helmet())
 
 const filmeRotas = require('./src/routes/filme/routes_filme.js')
 const classificacaoRotas = require('./src/routes/classificacao/routes_classificacao.js')
+const generoRotas = require('./src/routes/genero/routes_genero.js')
 
 app.use('/v1/senai/locadora', filmeRotas)
 app.use('/v1/senai/locadora', classificacaoRotas)
+app.use('/v1/senai/locadora', generoRotas)
 
 const PORT = process.env.PORT || 3000
 

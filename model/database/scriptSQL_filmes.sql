@@ -24,6 +24,12 @@ create table tbl_classificacao(
     descricao varchar(255) not null
 );
 
+# Cria a tabela genero
+create table tbl_genero(
+	id int not null primary key auto_increment,
+    nome varchar(40) not null
+);
+
 # Inserir dados 
 insert into tbl_filme (
 						nome, 
@@ -46,7 +52,7 @@ insert into tbl_filme (
 # Mostra os atributos da tabela
 desc tbl_classificacao;
 
-select * from tbl_classificacao;
+select * from tbl_genero;
 
 # Update no filme selecionado 
 update tbl_filme 
